@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .wrap {
+            width: 500px;
+        }
+        
+        .wrap ul li {
+            float: left;
+            width: 48px;
+            height: 48px;
+            border: 1px solid black;
+        }
+        
+        .wrap ul li.up {
+            background-image: url(img/up.png);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: 50%;
+        }
+        
+        .wrap ul li.right {
+            background-image: url(img/right.png);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: 50%;
+        }
+        
+        .wrap ul li.down {
+            background-image: url(img/down.png);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: 50%;
+        }
+        
+        .wrap ul li.left {
+            background-image: url(img/left.png);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: 50%;
+        }
+        
+        .wrap ul li.box {
+            background-image: url(img/box.png);
+        }
+        
+        .wrap ul li.wall {
+            background-image: url(img/wall.png);
+        }
+        
+        .wrap ul li.egg {
+            background-image: url(img/res.png);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap"></div>
+</body>
+<script>
+    var wrap = document.getElementsByClassName("wrap")[0];
+    var str = "";
+    for (var i = 0; i < 8; i++) {
+        str += `<ul class='row r${i}'>`;
+        for (var j = 0; j < 10; j++) {
+            str += "<li></li>";
+        }
+        str += "</ul>";
+    }
+    wrap.innerHTML = str;
+    var rows = document.getElementsByClassName('row');
+    var cols = document.querySelectorAll('.r0 .li');
+
+    var x = 8,
+        y = 1;
+
+    var boxIndex = 999,
+        boxX = 0,
+        boxY = 0;
+
+    var direction = 'down';
+
+    var boxs = [{
+        x: 3,
+        y: 3
+    }, {
+        x: 5,
+        y: 3
+    }, {
+        x: 7,
+        y: 3
+    }, {
+        x: 4,
+        y: 4
+    }, {
+        x: 4,
+        y: 5
+    }];
+
+    var wall = [{
+        x: 3,
+        y: 0
+    }, {
+        x: 4,
+        y: 0
+    }, {
+        x: 5,
+        y: 0
+    }, {
+        x: 6,
+        y: 0
+    }, {
+        x: 7,
+        y: 0
+    }, {
+        x: 8,
+        y: 0
+    }, {
+        x: 9,
+        y: 0
+    }, {
+        x: 2,
+        y: 1
+    }, {
+        x: 3,
+        y: 1
+    }, {
+        x: 6,
+        y: 1
+    }, {
+        x: 9,
+        y: 1
+    }, {
+        x: 2,
+        y: 2
+    }, {
+        x: 6,
+        y: 2
+    }, {
+        x: 9,
+        y: 2
+    }, {
+        x: 2,
+        y: 3
+    }, {
+        x: 9,
+        y: 3
+    }, {
+        x: 2,
+        y: 4
+    }, {
+        x: 5,
+        y: 4
+    }, {
+        x: 6,
+        y: 4
+    }, {
+        x: 9,
+        y: 4
+    }, {
+        x: 0,
+        y: 5
+    }, {
+        x: 1,
+        y: 5
+    }, {
+        x: 2,
+        y: 5
+    }, {
+        x: 6,
+        y: 5
+    }, {
+        x: 8,
+        y: 5
+    }, {
+        x: 9,
+        y: 5
+    }, {
+        x: 0,
+        y: 6
+    }, {
+        x: 8,
+        y: 6
+    }, {
+        x: 0,
+        y: 7
+    }, {
+        x: 1,
+        y: 7
+    }, {
+        x: 2,
+        y: 7
+    }, {
+        x: 3,
+        y: 7
+    }, {
+        x: 4,
+        y: 7
+    }, {
+        x: 5,
+        y: 7
+    }, {
+        x: 6,
+        y: 7
+    }, {
+        x: 7,
+        y: 7
+    }, {
+        x: 8,
+        y: 7
+    }];
+
+    var egg = [{
+        x: 1,
+        y: 6
+    }, {
+        x: 2,
+        y: 6
+    }, {
+        x: 3,
+        y: 6
+    }, {
+        x: 4,
+        y: 6
+    }, {
+        x: 5,
+        y: 6
+    }]
+
+    for (var i = 0; i < wall.length; i++) {
+        rows[wall[i].y].childNodes[wall[i].x].classList.add('wall');
+    }
+    for (var j = 0; j < boxs.length; j++) {
+        rows[boxs[j].y].childNodes[boxs[j].x].classList.add('box');
+    }
+    for (var k = 0; k < egg.length; k++) {
+        rows[egg[k].y].childNodes[egg[k].x].classList.add('egg');
+    }
+    rows[y].childNodes[x].classList.add('down');
+
+    document.onkeydown = function(event) {
+        event = event || window.event;
+        //left
+        if (event.keyCode == 37) {
+            direction = 'left';
+            removeClass(x, y);
+            meMove();
+            removeClass(x, y);
+            addClass(x, y, 'left');
+            boxMove();
+            drawEgg();
+        }
+
+        //up
+        if (event.keyCode == 38) {
+            direction = 'up';
+            removeClass(x, y);
+            meMove();
+            removeClass(x, y);
+            addClass(x, y, 'up');
+            boxMove();
+            drawEgg();
+        }
+        //right
+        if (event.keyCode == 39) {
+            direction = 'right';
+            removeClass(x, y);
+            meMove();
+            removeClass(x, y);
+            addClass(x, y, 'right');
+            boxMove();
+            drawEgg();
+        }
+        //down
+        if (event.keyCode == 40) {
+            direction = 'down';
+            removeClass(x, y);
+            meMove();
+            removeClass(x, y);
+            addClass(x, y, 'down');
+            boxMove();
+            drawEgg();
+        }
+    }
+
+    function removeClass(xx, yy) {
+        var getCn = rows[yy].childNodes[xx].className;
+        if (getCn != "") {
+            rows[yy].childNodes[xx].classList.remove(getCn);
+        }
+    }
+
+    function addClass(xx, yy, classname) {
+        rows[yy].childNodes[xx].classList.add(classname);
+    }
+
+    function findObj(arr, m, n) {
+        return arr.find(function(wa) {
+            return m == wa.x && n == wa.y;
+        });
+    }
+
+    function findIndexOf(arr, m, n) {
+        return arr.findIndex(function(wa) {
+            return m == wa.x && n == wa.y;
+        });
+    }
+
+    var count = 0;
+
+    function drawEgg() {
+
+        count = 0;
+        for (var i in egg) {
+            addClass(egg[i].x, egg[i].y, 'egg');
+        }
+        for (var i in boxs) {
+            var b = findIndexOf(egg, boxs[i].x, boxs[i].y)
+            if (b > -1) {
+                count++;
+                rows[egg[b].y].childNodes[egg[b].x].classList.remove('egg');
+            }
+
+            var a = findIndexOf(egg, x, y);
+            if (a > -1) {
+                rows[egg[a].y].childNodes[egg[a].x].classList.remove('egg');
+            }
+        }
+        if (count == egg.length) {
+            setTimeout(() => {
+                alert("恭喜过关");
+            }, 100);
+        }
+    }
+
+    function isoBstacles(obj, xx, yy) {
+        var w = findObj(obj, xx, yy);
+        if (w === undefined) {
+            return false;
+        }
+        return true;
+    }
+
+    function isBoxAfter(xx, yy) {
+        if (isoBstacles(boxs, xx, yy) && isoBstacles(wall, xx, yy + 1)) {
+            return true;
+        }
+        return false;
+    }
+
+    function meMove() {
+        switch (direction) {
+            case 'up':
+                y--;
+                if (isoBstacles(wall, x, y) || isoBstacles(boxs, x, y) && (isoBstacles(wall, x, y - 1) || isoBstacles(boxs, x, y - 1))) {
+                    y++;
+                }
+                break;
+            case 'down':
+                y++;
+                if (isoBstacles(wall, x, y) || isoBstacles(boxs, x, y) && (isoBstacles(wall, x, y + 1) || isoBstacles(boxs, x, y + 1))) {
+                    y--;
+                }
+                break;
+            case 'left':
+                x--;
+                if (isoBstacles(wall, x, y) || isoBstacles(boxs, x, y) && (isoBstacles(wall, x - 1, y) || isoBstacles(boxs, x - 1, y))) {
+                    x++;
+                }
+                break;
+            case 'right':
+                x++;
+                if (isoBstacles(wall, x, y) || isoBstacles(boxs, x, y) && (isoBstacles(wall, x + 1, y) || isoBstacles(boxs, x + 1, y))) {
+                    x--;
+                }
+                break;
+        }
+    }
+
+    function boxMove() {
+        boxIndex = findIndexOf(boxs, x, y);
+        if (boxIndex > -1) {
+            switch (direction) {
+                case 'up':
+                    boxs[boxIndex].y--;
+                    break;
+                case 'down':
+                    boxs[boxIndex].y++;
+                    break;
+                case 'left':
+                    boxs[boxIndex].x--;
+                    break;
+                case 'right':
+                    boxs[boxIndex].x++;
+                    break;
+            }
+            removeClass(boxs[boxIndex].x, boxs[boxIndex].y);
+            addClass(boxs[boxIndex].x, boxs[boxIndex].y, 'box');
+        }
+    }
+</script>
+
+
+</html>

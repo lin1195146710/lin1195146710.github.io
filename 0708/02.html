@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            position: relative;
+        }
+        
+        .box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 50px;
+        }
+        
+        .left {
+            left: 400px;
+        }
+        
+        .right {
+            right: 400px;
+        }
+        
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgb(0, 0, 0, 0.7);
+            text-align: center;
+            line-height: 200px;
+            color: white;
+            opacity: 0;
+            transition: all .8s;
+        }
+        
+        .front {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-image: url(img/bg2.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            transition: all .8s;
+            transform: rotateZ(90deg);
+            z-index: -1;
+        }
+        
+        .front::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 220px;
+            height: 110px;
+            border-radius: 110px 110px 0 0;
+            /* border-bottom: 10px solid lightgreen;
+             */
+            background-color: lightsalmon;
+            /* z-index: -1; */
+            /* transform-origin: center; */
+            /* transform: rotateX(30deg); */
+        }
+        
+        .front::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            width: 220px;
+            height: 110px;
+            border-radius: 0 0 110px 110px;
+            /* border-bottom: 10px solid lightgreen;
+             */
+            background-color: lightgreen;
+            /* z-index: -1; */
+        }
+        
+        .s1:hover .back {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* .s1:hover .front {
+            transform: rotateZ(-90deg);
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="box left s1">
+            <div class="front"></div>
+            <div class="back">Back</div>
+        </div>
+    </div>
+</body>
+
+</html>
