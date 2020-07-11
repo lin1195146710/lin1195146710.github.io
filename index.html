@@ -21,7 +21,6 @@
             }
             .my_wrap {
                 margin-top: 0;
-                transition: margin 1s;
                 border-radius: 0;
             }
         }
@@ -37,7 +36,7 @@
         }
         
         .my_wrap {
-            /* position: relative; */
+            position: relative;
             margin-top: 50px;
             display: flex;
             justify-content: center;
@@ -45,8 +44,26 @@
             flex-direction: column;
             background: #D69797;
             border-radius: 20px 0 0 0;
-            transition: margin 1s;
-            /* height: 2600px; */
+            transition: margin, transform .5s;
+            overflow: hidden;
+            z-index: 3;
+            /* transform-style: preserve-3d;
+            perspective: 1000px; */
+        }
+        
+        .my_wrap_icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            opacity: 0;
+            z-index: 999;
+            cursor: pointer;
+            /* transition: opacity 1s; */
+        }
+        
+        .my_wrap_remove {
+            display: none;
         }
         
         .my_container {
@@ -60,7 +77,7 @@
         .my_card_wrap {
             /* background-color: lemonchiffon; */
             /* height: 400px;  */
-            padding: 50px 20px 60px 20px;
+            padding: 60px 20px 60px 20px;
         }
         
         .my_card {
@@ -74,16 +91,6 @@
             position: relative;
             box-shadow: 0 0 8rem 8rem rgba(78, 134, 165, 0.09);
         }
-        /* .my_card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 2rem;
-            background: rgb(0, 0, 0, 0.2);
-        } */
         
         .my_card img {
             width: 100%;
@@ -110,14 +117,33 @@
         .my_card_title a:hover {
             text-decoration: none;
         }
+        
+        .overlay.active .overlay-1 {
+            position: fixed;
+            top: 5%;
+            left: 50px;
+            width: 100%;
+            height: 100%;
+            background: lightsalmon;
+            z-index: 0;
+        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="my row">
-            <div class="my_aside col-lg-2 col-md-3 col-sm-4 hidden-xs">affds</div>
+            <div class="my_aside col-lg-2 col-md-3 col-sm-4">aside</div>
 
+            <div class="my_wrap_icon">
+                <span class="glyphicon glyphicon-menu-hamburger my_wrap_menu"></span>
+                <span class="glyphicon glyphicon-remove my_wrap_remove"></span>
+            </div>
+
+            <div class="overlay">
+                <span class="overlay-1"></span>
+                <span class="overlay-2"></span>
+            </div>
             <div class="my_wrap col-lg-10 col-md-9 col-sm-8 col-xm-12">
                 <div class="my_container">
                     <div class="my_card_wrap">
@@ -164,18 +190,58 @@
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script>
+        var myWrap = document.getElementsByClassName("my_wrap")[0];
+        var myWrapIcon = document.getElementsByClassName("my_wrap_icon")[0];
+        var myAside = document.getElementsByClassName("my_aside")[0];
+        var myWrapMenu = document.querySelector(".my_wrap_menu");
+        var myWrapRemove = document.querySelector(".my_wrap_remove");
+        var overlay = document.getElementsByClassName("overlay")[0];
+        var bool = false;
         window.addEventListener('load', function() {
-            var myWrap = document.getElementsByClassName("my_wrap")[0];
             window.addEventListener('resize', function() {
-                if (window.innerWidth < 768) {
-                    myWrap.style.marginTop = 0;
-                    myWrap.style.borderRadius = 0;
-                } else {
-                    myWrap.style.marginTop = "50px";
-                    myWrap.style.borderRadius = "20px 0 0 0";
-                }
-
+                modifyCSS(window.innerWidth);
             })
+        });
+
+        function modifyCSS(sectionWidth) {
+            if (sectionWidth < 768) {
+                myAside.style.display = "none";
+                myWrap.style.marginTop = 0;
+                myWrap.style.borderRadius = 0;
+                myWrapIcon.style.opacity = 1;
+                myWrapIcon.style.transition = "opacity 1s";
+                bool = true;
+                myWrapIcon.click();
+            } else {
+                myAside.style.display = "block";
+                myWrap.style.marginTop = "50px";
+                myWrap.style.borderRadius = "20px 0 0 0";
+                myWrapIcon.style.opacity = 0;
+                myWrapIcon.style.transition = "opacity 0s";
+            }
+        }
+
+        myWrapIcon.addEventListener('click', function() {
+            if (bool) {
+                overlay.classList.remove("active");
+                myAside.style.display = "none";
+                myWrapMenu.style.display = "block";
+                myWrapRemove.style.display = "none";
+                myWrap.style.borderRadius = "0";
+                // myWrap.style.left = "0";
+                myWrap.style.transform = "translateX(0) translateY(0)";
+                bool = false;
+            } else {
+                overlay.classList.add("active");
+                myWrapMenu.style.display = "none";
+                myWrapRemove.style.display = "block";
+                myWrap.style.transform = "translateX(70%) translateY(5%)";
+                // myWrap.style.left = "200px";
+                myWrap.style.borderRadius = "20px 0 0 0";
+                myAside.style.display = "block";
+                bool = true;
+            }
+            // console.log(myWrapIcon);
         });
     </script>
 
