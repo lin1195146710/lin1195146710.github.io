@@ -9,46 +9,44 @@
     <link rel="stylesheet" href="asset/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="asset/css/style.css">
     <style>
-        @media (min-width: 769px) {
-            .my_card_wrap {
-                width: 500px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .my_card_wrap {
-                width: 400px;
-            }
-            .my_wrap {
-                margin-top: 0;
-                border-radius: 0;
-            }
-        }
-        
         body {
-            background: #AB9BD7;
+            /* background: #AB9BD7; */
+            background: #fff url(img/white_brick_wall.png);
             font-family: "宋体";
+            overflow: hidden;
         }
         
         .my_aside {
             /* background: lightskyblue; */
             /* height: 2600px; */
+            display: none;
+        }
+        
+        .my.active .my_aside {
+            display: block;
         }
         
         .my_wrap {
             position: relative;
             margin-top: 50px;
+            margin-left: 20%;
+            width: 80%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background: #D69797;
+            /* background: rgb(208, 150, 152, 0.5); */
+            /* background: red; */
+            background: rgb(250, 3, 4, 0.5);
             border-radius: 20px 0 0 0;
-            transition: margin, transform .5s;
+            transition: all .5s;
             overflow: hidden;
             z-index: 3;
-            /* transform-style: preserve-3d;
-            perspective: 1000px; */
+        }
+        
+        .my.active .my_wrap {
+            transform: translateX(60%) translateY(50px);
+            border-radius: 20px 0 0 0;
         }
         
         .my_wrap_icon {
@@ -84,12 +82,11 @@
             width: 300px;
             height: 400px;
             margin: auto;
-            /* background: lightcoral;
-             */
             background: #F6FBFD;
             border-radius: 2rem;
             position: relative;
             box-shadow: 0 0 8rem 8rem rgba(78, 134, 165, 0.09);
+            cursor: pointer;
         }
         
         .my_card img {
@@ -106,6 +103,7 @@
             height: 7rem;
             line-height: 7rem;
             text-align: center;
+            font-size: 24px;
         }
         
         .my_card_title a {
@@ -118,59 +116,169 @@
             text-decoration: none;
         }
         
-        .overlay.active .overlay-1 {
-            position: fixed;
-            top: 5%;
-            left: 50px;
+        .overlay .overlay-1,
+        .overlay .overlay-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: lightsalmon;
+            /* background: rgb(255, 255, 255, 0.5); */
+            background: rgb(141, 234, 145, 0.5);
+            border-radius: 2rem 0 0 0;
             z-index: 0;
+            display: none;
+            transition: all 1s;
+        }
+        /* .overlay.active .overlay-1,
+        .overlay.active .overlay-2 {
+            display: block;
+            transition: all .5s;
+        } */
+        /* .overlay-1 {
+            background: lightskyblue;
+            z-index: 3;
+        }
+        
+        .overlay-2 {
+            background: lightgoldenrodyellow;
+            z-index: -1;
+        } */
+        
+        .my_wrap_icon {
+            transition: all .5s;
+        }
+        
+        .my_wrap_menu {
+            display: block;
+        }
+        
+        .my.active .my_wrap_menu {
+            display: none;
+        }
+        
+        .my_wrap_remove {
+            display: none;
+        }
+        
+        .my.active .my_wrap_remove {
+            display: block;
+        }
+        
+        @media (min-width: 1200px) {
+            .my_aside {
+                display: block;
+            }
+            .my_card_wrap {
+                width: 600px;
+            }
+            .my_wrap {
+                margin-top: 3.2rem;
+                margin-left: 20%;
+                width: 80%;
+                border-radius: 20px 0 0 0;
+            }
+            .my_wrap_icon {
+                opacity: 0;
+                transition: all 0s;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .my_aside {
+                display: block;
+            }
+            .my_card_wrap {
+                width: 500px;
+            }
+            .my_wrap {
+                margin-top: 3.2rem;
+                margin-left: 24%;
+                width: 76%;
+                border-radius: 20px 0 0 0;
+            }
+            .my_wrap_icon {
+                opacity: 0;
+                transition: all 0s;
+            }
+            .overlay.active .overlay-1 {
+                display: block;
+                transform: translateX(50%) translateY(25%);
+            }
+            .overlay.active .overlay-2 {
+                display: block;
+                transform: translateX(40%) translateY(35%);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .my_aside {
+                display: none;
+            }
+            .my_card_wrap {
+                width: 400px;
+            }
+            .my_wrap {
+                margin-top: 0;
+                margin-left: 0;
+                width: 100%;
+                border-radius: 0;
+                background-color: lightgreen;
+            }
+            .my_wrap_icon {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="overlay">
+        <span class="overlay-1"></span>
+        <span class="overlay-2"></span>
+    </div>
     <div class="container-fluid">
         <div class="my row">
-            <div class="my_aside col-lg-2 col-md-3 col-sm-4">aside</div>
+            <div class="my_aside">aside</div>
 
             <div class="my_wrap_icon">
                 <span class="glyphicon glyphicon-menu-hamburger my_wrap_menu"></span>
                 <span class="glyphicon glyphicon-remove my_wrap_remove"></span>
             </div>
 
-            <div class="overlay">
-                <span class="overlay-1"></span>
-                <span class="overlay-2"></span>
-            </div>
-            <div class="my_wrap col-lg-10 col-md-9 col-sm-8 col-xm-12">
+
+            <div class="my_wrap">
                 <div class="my_container">
                     <div class="my_card_wrap">
-                        <div class="my_card">
-                            <img src="img/bg1.jpg" alt="">
-                            <div class="my_card_title">
-                                <a href="helicopter.html">3D直升机</a>
+                        <a href="helicopter.html">
+                            <div class="my_card">
+                                <img src="img/bg1.jpg" alt="">
+                                <div class="my_card_title">
+                                    3D直升机
+                                </div>
                             </div>
-                        </div>
-
+                        </a>
                     </div>
                     <div class="my_card_wrap">
-                        <div class="my_card">
-                            <img src="img/bg2.jpg" alt="">
-                            <div class="my_card_title">
-                                <a href="sokoban.html">推箱子</a>
+                        <a href="sokoban.html">
+                            <div class="my_card">
+                                <img src="img/bg2.jpg" alt="">
+                                <div class="my_card_title">
+                                    推箱子
+                                </div>
                             </div>
-                        </div>
-
+                        </a>
                     </div>
                 </div>
 
                 <div class="my_container">
                     <div class="my_card_wrap">
-                        <a href="musicPlay/index.html" class="my_card">
-                            <div class="my_card_title">
-                                音乐播放器
+                        <a href="musicPlay/index.html">
+                            <div class="my_card">
+                                <img src="img/musicPlay.png" alt="">
+                                <div class="my_card_title">
+                                    <!-- 音乐播放器 -->
+                                </div>
                             </div>
                         </a>
                     </div>
@@ -195,6 +303,7 @@
         var myWrapMenu = document.querySelector(".my_wrap_menu");
         var myWrapRemove = document.querySelector(".my_wrap_remove");
         var overlay = document.getElementsByClassName("overlay")[0];
+        var my = document.getElementsByClassName("my")[0];
         var bool = false;
         window.addEventListener('load', function() {
             window.addEventListener('resize', function() {
@@ -204,43 +313,29 @@
 
         function modifyCSS(sectionWidth) {
             if (sectionWidth < 768) {
-                myAside.style.display = "none";
-                myWrap.style.marginTop = 0;
-                myWrap.style.borderRadius = 0;
-                myWrapIcon.style.opacity = 1;
-                myWrapIcon.style.transition = "opacity 1s";
+                // myWrapIcon.style.opacity = 1;
                 bool = true;
                 myWrapIcon.click();
             } else {
-                myAside.style.display = "block";
-                myWrap.style.marginTop = "50px";
-                myWrap.style.borderRadius = "20px 0 0 0";
-                myWrapIcon.style.opacity = 0;
-                myWrapIcon.style.transition = "opacity 0s";
+                // myWrapIcon.style.opacity = 0;
             }
         }
 
         myWrapIcon.addEventListener('click', function() {
             if (bool) {
                 overlay.classList.remove("active");
-                myAside.style.display = "none";
-                myWrapMenu.style.display = "block";
-                myWrapRemove.style.display = "none";
-                myWrap.style.borderRadius = "0";
-                // myWrap.style.left = "0";
-                myWrap.style.transform = "translateX(0) translateY(0)";
+                my.classList.remove("active");
+                // myWrapMenu.style.display = "block";
+                // myWrapRemove.style.display = "none";
                 bool = false;
             } else {
                 overlay.classList.add("active");
-                myWrapMenu.style.display = "none";
-                myWrapRemove.style.display = "block";
-                myWrap.style.transform = "translateX(70%) translateY(5%)";
-                // myWrap.style.left = "200px";
-                myWrap.style.borderRadius = "20px 0 0 0";
-                myAside.style.display = "block";
+                my.classList.add("active");
+                // myWrapMenu.style.display = "none";
+                // myWrapRemove.style.display = "block";
+                overlay.style.transition = "all 1s";
                 bool = true;
             }
-            // console.log(myWrapIcon);
         });
     </script>
 
