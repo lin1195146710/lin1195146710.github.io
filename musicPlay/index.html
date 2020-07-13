@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.css" />
+  </head>
+
+  <body>
+
+    <section class="device">
+
+      <div class="device__top">
+        <img class="album-art" src="img/dengziqi.png" alt="album art" />
+        <img class="album-art" src="img/jujingyi.jpg" alt="album art" />
+        <img class="album-art" src="img/iu.jpg" alt="album art" />
+      </div>
+
+      <div class="device__mid">
+        <div class="info">
+          <hgroup class="info__left">
+            <h1 class="info__song">
+          <span class="song">句号</span>
+          <span class="song">叹云兮</span>
+          <span class="song">blueming</span>        
+        </h1>
+            <h2 class="info__artist">
+          <span class="artist">邓紫棋</span>
+          <span class="artist">鞠婧祎</span>
+          <span class="artist">IU</span>        
+        </h2>
+          </hgroup>
+
+          <hgroup class="info__right">
+            <h1 class="info__type">Playlist <span id="current-song">1</span> of 3</h1>
+            <h2 class="info__type-name">My faves</h2>
+          </hgroup>
+        </div>
+      </div>
+
+      <div class="device__audio">
+        <audio src="music/fullstop.mp3"></audio>
+        <audio src="music/sighyunxi.mp3"></audio>
+        <audio src="music/blueming.mp3"></audio>
+      </div>
+
+      <div class="device__bottom">
+        <div class="progress">
+          <span class="current-time">00:00:00</span>
+          <input id="slider" type="range" value="0" min="0" max="200" step="1" />
+          <span class="total-time">00:00:00</span>
+        </div>
+        <div class="equaliser"></div>
+        <div class="controls">
+          <button class="controls__round-button" id="previous-button">
+        <span class="fa fa-step-backward"></span>
+        <span class="sr-only">Previous</span>
+      </button>
+          <button class="controls__round-button controls__round-button--large" id="play-button">
+        <div class="play">
+          <span class="fa fa-play pn"></span>
+          <span class="sr-only">Play</span>
+        </div>
+        <div class="pause">
+          <span class="fa fa-pause pn"></span>
+          <span class="sr-only">Pause</span>
+        </div>
+      </button>
+          <button class="controls__round-button" id="next-button">
+        <span class="fa fa-step-forward"></span>
+        <span class="sr-only">Next</span>
+      </button>
+        </div>
+      </div>
+
+    </section>
+
+    <script src="js/MusicPlayer.js"></script>
+
+  </body>
+
+</html>
