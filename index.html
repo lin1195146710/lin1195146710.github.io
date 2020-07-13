@@ -28,7 +28,7 @@
         
         .my_wrap {
             position: relative;
-            margin-top: 50px;
+            margin-top: 3rem;
             margin-left: 20%;
             width: 80%;
             display: flex;
@@ -45,7 +45,7 @@
         }
         
         .my.active .my_wrap {
-            transform: translateX(60%) translateY(50px);
+            transform: translateX(60%) translateY(3rem);
             border-radius: 20px 0 0 0;
         }
         
@@ -203,11 +203,11 @@
             }
             .overlay.active .overlay-1 {
                 display: block;
-                transform: translateX(50%) translateY(25%);
+                transform: translateX(55%) translateY(9rem);
             }
             .overlay.active .overlay-2 {
                 display: block;
-                transform: translateX(40%) translateY(35%);
+                transform: translateX(50%) translateY(12rem);
             }
         }
         
@@ -297,11 +297,7 @@
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script>
-        var myWrap = document.getElementsByClassName("my_wrap")[0];
         var myWrapIcon = document.getElementsByClassName("my_wrap_icon")[0];
-        var myAside = document.getElementsByClassName("my_aside")[0];
-        var myWrapMenu = document.querySelector(".my_wrap_menu");
-        var myWrapRemove = document.querySelector(".my_wrap_remove");
         var overlay = document.getElementsByClassName("overlay")[0];
         var my = document.getElementsByClassName("my")[0];
         var bool = false;
@@ -314,10 +310,11 @@
         function modifyCSS(sectionWidth) {
             if (sectionWidth < 768) {
                 // myWrapIcon.style.opacity = 1;
-                bool = true;
-                myWrapIcon.click();
+
             } else {
                 // myWrapIcon.style.opacity = 0;
+                bool = true;
+                myWrapIcon.click();
             }
         }
 
@@ -325,15 +322,11 @@
             if (bool) {
                 overlay.classList.remove("active");
                 my.classList.remove("active");
-                // myWrapMenu.style.display = "block";
-                // myWrapRemove.style.display = "none";
                 bool = false;
             } else {
                 overlay.classList.add("active");
                 my.classList.add("active");
-                // myWrapMenu.style.display = "none";
-                // myWrapRemove.style.display = "block";
-                overlay.style.transition = "all 1s";
+                // overlay.style.transition = "all 1s";
                 bool = true;
             }
         });
