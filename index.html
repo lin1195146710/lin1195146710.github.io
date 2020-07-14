@@ -3,336 +3,127 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tam - Creative Portfolio Template</title>
+    <!-- reset css-->
     <link rel="stylesheet" href="asset/css/reset.css">
-    <link rel="stylesheet" href="asset/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="asset/css/style.css">
-    <style>
-        body {
-            /* background: #AB9BD7; */
-            background: #fff url(img/white_brick_wall.png);
-            font-family: "宋体";
-            overflow: hidden;
-        }
-        
-        .my_aside {
-            /* background: lightskyblue; */
-            /* height: 2600px; */
-            display: none;
-        }
-        
-        .my.active .my_aside {
-            display: block;
-        }
-        
-        .my_wrap {
-            position: relative;
-            margin-top: 3rem;
-            margin-left: 20%;
-            width: 80%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            /* background: rgb(208, 150, 152, 0.5); */
-            /* background: red; */
-            background: rgb(250, 3, 4, 0.5);
-            border-radius: 20px 0 0 0;
-            transition: all .5s;
-            overflow: hidden;
-            z-index: 3;
-        }
-        
-        .my.active .my_wrap {
-            transform: translateX(60%) translateY(3rem);
-            border-radius: 20px 0 0 0;
-        }
-        
-        .my_wrap_icon {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 24px;
-            opacity: 0;
-            z-index: 999;
-            cursor: pointer;
-            /* transition: opacity 1s; */
-        }
-        
-        .my_wrap_remove {
-            display: none;
-        }
-        
-        .my_container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .my_card_wrap {
-            /* background-color: lemonchiffon; */
-            /* height: 400px;  */
-            padding: 60px 20px 60px 20px;
-        }
-        
-        .my_card {
-            width: 300px;
-            height: 400px;
-            margin: auto;
-            background: #F6FBFD;
-            border-radius: 2rem;
-            position: relative;
-            box-shadow: 0 0 8rem 8rem rgba(78, 134, 165, 0.09);
-            cursor: pointer;
-        }
-        
-        .my_card img {
-            width: 100%;
-            height: 100%;
-            border-radius: 2rem;
-        }
-        
-        .my_card_title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 7rem;
-            line-height: 7rem;
-            text-align: center;
-            font-size: 24px;
-        }
-        
-        .my_card_title a {
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        
-        .my_card_title a:hover {
-            text-decoration: none;
-        }
-        
-        .overlay .overlay-1,
-        .overlay .overlay-2 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background: rgb(255, 255, 255, 0.5); */
-            background: rgb(141, 234, 145, 0.5);
-            border-radius: 2rem 0 0 0;
-            z-index: 0;
-            display: none;
-            transition: all 1s;
-        }
-        /* .overlay.active .overlay-1,
-        .overlay.active .overlay-2 {
-            display: block;
-            transition: all .5s;
-        } */
-        /* .overlay-1 {
-            background: lightskyblue;
-            z-index: 3;
-        }
-        
-        .overlay-2 {
-            background: lightgoldenrodyellow;
-            z-index: -1;
-        } */
-        
-        .my_wrap_icon {
-            transition: all .5s;
-        }
-        
-        .my_wrap_menu {
-            display: block;
-        }
-        
-        .my.active .my_wrap_menu {
-            display: none;
-        }
-        
-        .my_wrap_remove {
-            display: none;
-        }
-        
-        .my.active .my_wrap_remove {
-            display: block;
-        }
-        
-        @media (min-width: 1200px) {
-            .my_aside {
-                display: block;
-            }
-            .my_card_wrap {
-                width: 600px;
-            }
-            .my_wrap {
-                margin-top: 3.2rem;
-                margin-left: 20%;
-                width: 80%;
-                border-radius: 20px 0 0 0;
-            }
-            .my_wrap_icon {
-                opacity: 0;
-                transition: all 0s;
-            }
-        }
-        
-        @media (max-width: 1200px) {
-            .my_aside {
-                display: block;
-            }
-            .my_card_wrap {
-                width: 500px;
-            }
-            .my_wrap {
-                margin-top: 3.2rem;
-                margin-left: 24%;
-                width: 76%;
-                border-radius: 20px 0 0 0;
-            }
-            .my_wrap_icon {
-                opacity: 0;
-                transition: all 0s;
-            }
-            .overlay.active .overlay-1 {
-                display: block;
-                transform: translateX(55%) translateY(9rem);
-            }
-            .overlay.active .overlay-2 {
-                display: block;
-                transform: translateX(50%) translateY(12rem);
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .my_aside {
-                display: none;
-            }
-            .my_card_wrap {
-                width: 400px;
-            }
-            .my_wrap {
-                margin-top: 0;
-                margin-left: 0;
-                width: 100%;
-                border-radius: 0;
-                background-color: lightgreen;
-            }
-            .my_wrap_icon {
-                opacity: 1;
-            }
-        }
-    </style>
+
+    <!-- base css-->
+    <link rel="stylesheet" href="asset/css/base.css">
+
 </head>
 
-<body>
-    <div class="overlay">
+<body data-spy="scroll" data-target=".navbar">
+
+    <!-- START: Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="spinner-grow text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- END: Preloader -->
+
+    <!-- START: Aside -->
+    <aside class="aside">
+        <!-- START: NAVBAR -->
+
+        <div class="nav-wrapper">
+
+            <div class="navbar-toggler">
+                <svg class="ham hamRotate ham1" width="60">
+				  <path class="line top" d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+				  <path class="line middle" d="m 30,50 h 40" />
+				  <path class="line bottom" d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+				</svg>
+            </div>
+
+            <nav class="navbar text-center align-items-center justify-content-center">
+
+                <div class="navbar-collapse" id="navbarCollapse">
+                    <div class="about-avatar mb-5">
+                        <img src="asset/img/about.jpg" alt="" class="img-fluid mx-auto d-block shadow-sm rounded-full">
+                        <div class="about-avatar-details mt-4">
+                            <h1>LIN</h1>
+                            <p class="badge">Web前端</p>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"><i class="lni-home"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="lni-graduation"></i>JavaScript</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="lni-offer"></i>jquery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="lni-pencil"></i>React</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="lni-phone-handset"></i>vue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="lni-briefcase"></i>3D</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+        <!-- END: NAVBAR -->
+    </aside>
+    <!-- START: Aside -->
+
+    <div class="page-overlay">
         <span class="overlay-1"></span>
         <span class="overlay-2"></span>
     </div>
-    <div class="container-fluid">
-        <div class="my row">
-            <div class="my_aside">aside</div>
 
-            <div class="my_wrap_icon">
-                <span class="glyphicon glyphicon-menu-hamburger my_wrap_menu"></span>
-                <span class="glyphicon glyphicon-remove my_wrap_remove"></span>
+    <div class="page-wrapper">
+
+        <!-- START: HOME -->
+        <section class="section-home " id="home">
+            <div class="glass">LIN</div>
+        </section>
+        <!-- END: HOME -->
+
+        <!-- START: PROJECT LIST -->
+        <section class="section-javascript project-list" id="javaScript">
+            <a href="#">
+                <div class="project-card"></div>
+            </a>
+            <a href="#">
+                <div class="project-card"></div>
+            </a>
+        </section>
+        <!-- END: PROJECT LIST -->
+
+        <!-- START: PROJECT LIST -->
+        <section class="section-jquery project-list" id="jquery">
+            <a href="#">
+                <div class="project-card"></div>
+            </a>
+            <a href="#">
+                <div class="project-card"></div>
+            </a>
+        </section>
+        <!-- END: PROJECT LIST -->
+
+        <!--START: FOOTER-->
+        <footer class="footer section section-light">
+            <div class="container">
+                <p class="copyright text-center mb-0">&copy; 2020 | All Right Reserved</p>
             </div>
-
-
-            <div class="my_wrap">
-                <div class="my_container">
-                    <div class="my_card_wrap">
-                        <a href="helicopter.html">
-                            <div class="my_card">
-                                <img src="img/bg1.jpg" alt="">
-                                <div class="my_card_title">
-                                    3D直升机
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="my_card_wrap">
-                        <a href="sokoban.html">
-                            <div class="my_card">
-                                <img src="img/bg2.jpg" alt="">
-                                <div class="my_card_title">
-                                    推箱子
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="my_container">
-                    <div class="my_card_wrap">
-                        <a href="musicPlay/index.html">
-                            <div class="my_card">
-                                <img src="img/musicPlay.png" alt="">
-                                <div class="my_card_title">
-                                    <!-- 音乐播放器 -->
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="my_card_wrap">
-                        <div class="my_card">
-                            <div class="my_card_title">
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        </footer>
+        <!--END: FOOTER-->
     </div>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script>
-        var myWrapIcon = document.getElementsByClassName("my_wrap_icon")[0];
-        var overlay = document.getElementsByClassName("overlay")[0];
-        var my = document.getElementsByClassName("my")[0];
-        var bool = false;
-        window.addEventListener('load', function() {
-            window.addEventListener('resize', function() {
-                modifyCSS(window.innerWidth);
-            })
-        });
-
-        function modifyCSS(sectionWidth) {
-            if (sectionWidth < 768) {
-                // myWrapIcon.style.opacity = 1;
-
-            } else {
-                // myWrapIcon.style.opacity = 0;
-                bool = true;
-                myWrapIcon.click();
-            }
-        }
-
-        myWrapIcon.addEventListener('click', function() {
-            if (bool) {
-                overlay.classList.remove("active");
-                my.classList.remove("active");
-                bool = false;
-            } else {
-                overlay.classList.add("active");
-                my.classList.add("active");
-                // overlay.style.transition = "all 1s";
-                bool = true;
-            }
-        });
-    </script>
 
 
+    <!-- JAVASCRIPTS -->
+
+    <script src="asset/js/vendor.js"></script>
+    <script src="asset/js/custom.js"></script>
 </body>
 
 </html>
