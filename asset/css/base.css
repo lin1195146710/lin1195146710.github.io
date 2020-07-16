@@ -679,10 +679,9 @@ strong {
 
 .project-list {
     position: relative;
-    padding: 0 10%;
+    padding: 0 12%;
     width: 100%;
     background: white;
-    /* background-clip: content-box; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -691,10 +690,21 @@ strong {
 
 .project-list .project-card {
     margin-top: 5rem;
-    width: 20rem;
-    height: 25rem;
+    width: 22rem;
+    height: 28rem;
     background: lightpink;
     border-radius: 2rem;
+}
+
+.project-card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+}
+
+.project-card:hover {
+    /* box-shadow: 0 0 20px 20px rgba( 0, 0, 0, 0.1); */
+    box-shadow: inset 0px 0px 20px 0px rgba(192, 192, 192, 1);
 }
 
 
@@ -702,7 +712,13 @@ strong {
 * 7. All Media Queries
 /* ---------------------------------------------- */
 
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
+    .project-list {
+        padding: 0 6%;
+    }
+}
+
+@media (max-width: 992px) {
     .container {
         max-width: 100%;
     }
@@ -743,9 +759,17 @@ strong {
     .page-overlay {
         display: block;
     }
+    /* .project-list {
+        padding: 0 6%;
+    } */
+    .project-list .project-card {
+        width: 18rem;
+        height: 24rem;
+        margin: 2rem;
+    }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .about-avatar img {
         height: 100px;
         width: 100px;
@@ -755,6 +779,10 @@ strong {
         left: -260px;
         width: 100%;
         overflow: auto;
+    }
+    .project-list .project-card {
+        width: 17rem;
+        height: 22rem;
     }
     .project-list {
         justify-content: center;
