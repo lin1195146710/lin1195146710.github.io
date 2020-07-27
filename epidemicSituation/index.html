@@ -391,7 +391,7 @@
             let data = result.newslist;
             let tol = [];
             let mainContent = document.querySelectorAll('.main_content')[1];
-            data = format(data);
+            data = format(data, 0);
 
             for (const continent in data) {
                 let sum = [0, 0, 0, 0];
@@ -445,33 +445,7 @@
 
         }
 
-        function format(data) {
-            var arr = [];
-            var obj = {};
-            var arr2 = [];
-
-            data.forEach((continent) => {
-                if (arr.indexOf(continent.continents) == -1) {
-                    arr.push(continent.continents);
-                }
-            })
-
-            arr.forEach((element, index) => {
-                obj[element] = [];
-            });
-
-            data.forEach(e => {
-                for (var k in obj) {
-                    if (k == e.continents) {
-                        obj[k].push(e)
-                    }
-                }
-            })
-
-            return obj;
-        }
-
-        function format2(data) {
+        function format(data, index) {
             var arr = [];
             var obj = {};
             var arr2 = [];
@@ -501,13 +475,17 @@
                 arr2.push(obj[key]);
             }
 
-            return arr2;
+            if (index == 0) {
+                return obj;
+            } else {
+                return arr2;
+            }
         }
 
         function global(result) {
             let data = result.newslist;
             let sum = [0, 0, 0, 0]
-            data = format2(data);
+            data = format(data, 1);
             data.forEach((continent) => {
                 continent.forEach((country) => {
                     sum[0] += country.confirmedCount;
