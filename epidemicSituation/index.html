@@ -273,8 +273,8 @@
             var showBtn = document.querySelectorAll('.showBtn');
             var bool = false;
             showBtn.forEach((s, i) => {
-                s.onclick = function() {
-                    var uls = this.parentNode.parentNode.children
+                s.parentNode.onclick = function() {
+                    var uls = this.parentNode.children
                     if (!bool) {
                         bool = true;
                         Array.prototype.forEach.call(uls, (ul) => {
