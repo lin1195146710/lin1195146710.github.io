@@ -694,6 +694,7 @@ strong {
     height: 28rem;
     background: lightpink;
     border-radius: 2rem;
+    box-shadow: 0 8px 12px #ebedf0;
 }
 
 .project-card img {
@@ -703,7 +704,7 @@ strong {
 }
 
 .project-card:hover {
-    box-shadow: inset 0px 0px 20px 0px rgba(192, 192, 192, 1);
+    /* box-shadow: inset 0px 0px 20px 0px rgba(192, 192, 192, 1); */
 }
 
 
